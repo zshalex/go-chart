@@ -138,14 +138,17 @@ func (pc PieChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 	} else {
 		for index, v := range values {
 			v.Style.InheritFrom(pc.stylePieChartValue(index)).WriteToRenderer(r)
-
-			r.MoveTo(cx, cy)
+			if len(values)>1 {
+				r.MoveTo(cx, cy)
+			}
 			rads = PercentToRadians(total)
 			delta = PercentToRadians(v.Value)
 
 			r.ArcTo(cx, cy, radius, radius, rads, delta)
 
-			r.LineTo(cx, cy)
+			if len(values)>1 {
+				r.LineTo(cx, cy)
+			}
 			r.Close()
 			r.FillStroke()
 			total = total + v.Value
