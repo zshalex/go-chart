@@ -131,11 +131,11 @@ func (pc PieChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 	var rads, delta, delta2, total float64
 	var lx, ly int
 
-	if len(values) == 1 {
-		pc.stylePieChartValue(0).WriteToRenderer(r)
-		r.MoveTo(cx, cy)
-		r.Circle(radius, cx, cy)
-	} else {
+// 	if len(values) == 1 {
+// 		pc.stylePieChartValue(0).WriteToRenderer(r)
+// 		r.MoveTo(cx, cy)
+// 		r.Circle(radius, cx, cy)
+// 	} else {
 		for index, v := range values {
 			v.Style.InheritFrom(pc.stylePieChartValue(index)).WriteToRenderer(r)
 			if len(values)>1 {
@@ -153,7 +153,7 @@ func (pc PieChart) drawSlices(r Renderer, canvasBox Box, values []Value) {
 			r.FillStroke()
 			total = total + v.Value
 		}
-	}
+// 	}
 
 	// draw the labels
 	total = 0
